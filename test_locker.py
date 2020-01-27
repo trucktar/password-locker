@@ -21,6 +21,16 @@ class TestUser(unittest.TestCase):
         self.new_user.save_user()
         self.assertEqual(len(User.user_list), 1)
 
+    def test_save_multiple_users(self):
+        """Test case to test if multiple users are saved successfully."""
+        self.new_user.save_user()
+        other_user_1 = User("johndoe", "JohnDOE")
+        other_user_1.save_user()
+        other_user_2 = User("pipfile", "PipFILE")
+        other_user_2.save_user()
+
+        self.assertEqual(len(User.user_list), 3)
+
 
 class TestCredential(unittest.TestCase):
     """Test class that defines test cases for the Credential class.
