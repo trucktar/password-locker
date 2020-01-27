@@ -11,6 +11,10 @@ class TestUser(unittest.TestCase):
         """Set up method to run before each test case."""
         self.new_user = User("trucktar", "TruckOnTAR")
 
+    def tearDown(self):
+        """Clean up logic after each test case."""
+        User.user_list.clear()
+
     def test_create_user(self):
         """Test case to test if user is created properly."""
         self.assertEqual(self.new_user.username, "trucktar")
