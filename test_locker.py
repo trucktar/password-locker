@@ -17,8 +17,9 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.password, "TruckOnTAR")
 
     def test_save_user(self):
+        """Test case to test if user is saved successfully."""
         self.new_user.save_user()
-        self.assertEqual(len(User.users), 1)
+        self.assertEqual(len(User.user_list), 1)
 
 
 class TestCredential(unittest.TestCase):
