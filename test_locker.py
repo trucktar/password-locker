@@ -54,6 +54,23 @@ class TestUser(unittest.TestCase):
         )
         self.assertEqual(UserAccount.find_account_by_username("johndoe"), newer_account)
 
+    def test_create_credentials(self):
+        """Test case to test if a credential is created successfully."""
+        new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
+
+        self.new_account.create_credentials(new_credential)
+        self.assertEqual(len(self.new_account.credentials), 1)
+
+    def test_create_multiple_credentials(self):
+        """Test case to test multiple credentials are created successfully."""
+        new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
+        newer_credential = Credential("Instagram", "johndoe", "JohnDOE")
+
+        self.new_account.create_credential(new_credential)
+        self.new_account.create_credential(newer_credential)
+
+        self.assertEqual(len(self.new_account.credentials), 2)
+
 
 class TestCredential(unittest.TestCase):
     """Test class that defines test cases for the Credential class."""
@@ -72,6 +89,7 @@ class TestCredential(unittest.TestCase):
         """Test case to check if random password is generated."""
         newer_credential = Credential("Instagram", "johndoe")
         self.assertTrue(newer_credential.password)
+
 
 if __name__ == "__main__":
     unittest.main()
