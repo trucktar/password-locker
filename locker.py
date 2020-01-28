@@ -1,28 +1,24 @@
-class User:
-    """Class that generates instances of users
-    """
+class UserAccount:
+    """Class that generates locker account instances."""
 
     user_list = []  # Empty users list
 
     def __init__(self, username, password):
-        """Create user attributes after instantiation.
+        """Assign account attributes after instantiation.
 
         Args:
             username: New user's username.
             password: New user's password. 
         """
-
         self.username = username
         self.password = password
 
-    def save_user(self):
-        """Append user instance to user_list."""
-
-        User.user_list.append(self)
+    def create_account(self):
+        """Add new account instance to user_list."""
+        UserAccount.user_list.append(self)
 
 
 class Credential:
-    """Class that generates instances of credentials
-    """
+    """Class that generates credential instances."""
 
     pass

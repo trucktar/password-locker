@@ -1,44 +1,44 @@
 import unittest
 
-from locker import Credential, User
+from locker import Credential, UserAccount
 
 
 class TestUser(unittest.TestCase):
-    """Test class that defines test cases for the User class.
-    """
+    """Test class that defines test cases for the UserAccount class."""
 
     def setUp(self):
         """Set up method to run before each test case."""
-        self.new_user = User("trucktar", "TruckOnTAR")
+        self.new_account = UserAccount("trucktar", "TruckOnTAR")
 
     def tearDown(self):
         """Clean up logic after each test case."""
-        User.user_list.clear()
+        UserAccount.user_list.clear()
 
-    def test_create_user(self):
-        """Test case to test if user is created properly."""
-        self.assertEqual(self.new_user.username, "trucktar")
-        self.assertEqual(self.new_user.password, "TruckOnTAR")
+    def test_init(self):
+        """Test case to test if account is instantiated properly."""
+        self.assertEqual(self.new_account.username, "trucktar")
+        self.assertEqual(self.new_account.password, "TruckOnTAR")
 
-    def test_save_user(self):
-        """Test case to test if user is saved successfully."""
-        self.new_user.save_user()
-        self.assertEqual(len(User.user_list), 1)
+    def test_create_account(self):
+        """Test case to test if an account is created successfully."""
+        self.new_account.create_account()
+        self.assertEqual(len(UserAccount.user_list), 1)
 
-    def test_save_multiple_users(self):
-        """Test case to test if multiple users are saved successfully."""
-        self.new_user.save_user()
-        other_user_1 = User("johndoe", "JohnDOE")
-        other_user_1.save_user()
-        other_user_2 = User("pipfile", "PipFILE")
-        other_user_2.save_user()
+    def test_create_multiple_accounts(self):
+        """Test case to test if multiple accounts are created successfully."""
+        self.new_account.create_account()
 
-        self.assertEqual(len(User.user_list), 3)
+        newer_account = UserAccount("johndoe", "JohnDOE")
+        newer_account.create_account()
+
+        newest_account = UserAccount("pipfile", "PipFILE")
+        newest_account.create_account()
+
+        self.assertEqual(len(UserAccount.user_list), 3)
 
 
 class TestCredential(unittest.TestCase):
-    """Test class that defines test cases for the Credential class.
-    """
+    """Test class that defines test cases for the Credential class."""
 
     pass
 
