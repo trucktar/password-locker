@@ -41,8 +41,8 @@ class TestUser(unittest.TestCase):
 
     def test_login_account(self):
         """Test case to test if account login actually works."""
-        UserAccount.login_account(self)
-        self.assertEqual(UserAccount.active_user, self)
+        UserAccount.login_account(self.new_account)
+        self.assertEqual(UserAccount.active_user, self.new_account)
 
     def test_find_account_by_username(self):
         """Test case to check if account can be found by username."""
@@ -54,20 +54,23 @@ class TestUser(unittest.TestCase):
         )
         self.assertEqual(UserAccount.find_account_by_username("johndoe"), newer_account)
 
-    def test_create_credentials(self):
+    def test_create_credential(self):
         """Test case to test if a credential is created successfully."""
         new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
 
-        self.new_account.create_credentials(new_credential)
+        UserAccount.login_account(self.new_account)
+        UserAccount.active_user.create_credential(new_credential)
+        
         self.assertEqual(len(self.new_account.credentials), 1)
 
     def test_create_multiple_credentials(self):
         """Test case to test multiple credentials are created successfully."""
         new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
         newer_credential = Credential("Instagram", "johndoe", "JohnDOE")
-
-        self.new_account.create_credential(new_credential)
-        self.new_account.create_credential(newer_credential)
+        
+        UserAccount.login_account(self.new_account)
+        UserAccount.active_user.create_credential(new_credential)
+        UserAccount.active_user.create_credential(newer_credential)
 
         self.assertEqual(len(self.new_account.credentials), 2)
 
