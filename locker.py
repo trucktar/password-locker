@@ -1,3 +1,7 @@
+import random
+import string
+
+
 class UserAccount:
     """Class that generates locker account instances."""
 
@@ -49,7 +53,7 @@ class UserAccount:
 class Credential:
     """Class that generates credential instances."""
 
-    def __init__(self, sitename, username, password):
+    def __init__(self, sitename, username, password=None):
         """Assign credential attributes after instantiation.
 
         Args:
@@ -59,6 +63,13 @@ class Credential:
         """
         self.sitename = sitename
         self.username = username
-        self.password = password
+        self.password = password if password else Credential.generate_password()
 
-    pass
+    @classmethod
+    def generate_password(cls):
+        """Generate a random password for credential."""
+        characters = string.ascii_letters + string.digits
+        random_characters = random.choices(characters, k=12)
+        random_password = "".join(random_characters)
+
+        return random_password
