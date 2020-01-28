@@ -60,19 +60,32 @@ class TestUser(unittest.TestCase):
 
         UserAccount.login_account(self.new_account)
         UserAccount.active_user.create_credential(new_credential)
-        
+
         self.assertEqual(len(self.new_account.credentials), 1)
 
     def test_create_multiple_credentials(self):
         """Test case to test multiple credentials are created successfully."""
         new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
         newer_credential = Credential("Instagram", "johndoe", "JohnDOE")
-        
+
         UserAccount.login_account(self.new_account)
         UserAccount.active_user.create_credential(new_credential)
         UserAccount.active_user.create_credential(newer_credential)
 
         self.assertEqual(len(self.new_account.credentials), 2)
+
+    def test_delete_credential(self):
+        """Test case to test multiple credentials are created successfully."""
+        new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
+        newer_credential = Credential("Instagram", "johndoe", "JohnDOE")
+
+        UserAccount.login_account(self.new_account)
+        UserAccount.active_user.create_credential(new_credential)
+        UserAccount.active_user.create_credential(newer_credential)
+
+        UserAccount.active_user.delete_credential(new_credential)
+
+        self.assertEqual(len(self.new_account.credentials), 1)
 
 
 class TestCredential(unittest.TestCase):
