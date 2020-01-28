@@ -22,13 +22,10 @@ class TestUser(unittest.TestCase):
 
     def test_create_account(self):
         """Test case to test if an account is created successfully."""
-        self.new_account.create_account()
         self.assertEqual(len(UserAccount.user_list), 1)
 
     def test_create_multiple_accounts(self):
         """Test case to test if multiple accounts are created successfully."""
-        self.new_account.create_account()
-
         newer_account = UserAccount("johndoe", "JohnDOE")
         newer_account.create_account()
 
@@ -37,17 +34,18 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(len(UserAccount.user_list), 3)
 
+    def test_delete_account(self):
+        """Test case to test if an account is deleted successfully."""
+        self.new_account.delete_account()
+        self.assertEqual(len(UserAccount.user_list), 0)
+
     def test_login_account(self):
         """Test case to test if account login actually works."""
-        self.new_account.create_account()
         UserAccount.login_account(self)
-
         self.assertEqual(UserAccount.active_user, self)
 
     def test_find_account_by_username(self):
         """Test case to check if account can be found by username."""
-        self.new_account.create_account()
-
         newer_account = UserAccount("johndoe", "JohnDOE")
         newer_account.create_account()
 
