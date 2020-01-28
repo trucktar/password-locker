@@ -58,7 +58,15 @@ class TestUser(unittest.TestCase):
 class TestCredential(unittest.TestCase):
     """Test class that defines test cases for the Credential class."""
 
-    pass
+    def setUp(self):
+        """Set up method to run before each test case."""
+        self.new_credential = Credential("Twitter","trucktar", "TruckOnTAR")
+
+    def test_init(self):
+        """Test case to test if account is instantiated properly."""
+        self.assertEqual(self.new_credential.sitename, "Twitter")
+        self.assertEqual(self.new_credential.username, "trucktar")
+        self.assertEqual(self.new_credential.password, "TruckOnTAR")
 
 
 if __name__ == "__main__":
