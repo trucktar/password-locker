@@ -17,6 +17,7 @@ class UserAccount:
         """
         self.username = username
         self.password = password
+        self.credentials = []
 
     def create_account(self):
         """Add new account instance to user_list."""
@@ -25,6 +26,20 @@ class UserAccount:
     def delete_account(self):
         """Remove an account instance from user_list."""
         UserAccount.user_list.remove(self)
+
+    def create_credential(self, credential):
+        """Add new credential instance to user credentials.
+        
+        Args:
+            credential: the credential to save for user
+        """
+        if UserAccount.active_user == self:
+            self.credentials.append(credential)
+
+    def delete_credential(self, credential):
+        """Remove credential instance from user credentials."""
+        if UserAccount.active_user == self:
+            self.credentials.remove(credential)
 
     @classmethod
     def login_account(cls, account):
