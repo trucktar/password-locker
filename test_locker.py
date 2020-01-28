@@ -35,13 +35,25 @@ class TestUser(unittest.TestCase):
         newest_account.create_account()
 
         self.assertEqual(len(UserAccount.user_list), 3)
-    
+
     def test_login_account(self):
         """Test case to test if account login actually works."""
         self.new_account.create_account()
         UserAccount.login_account(self)
 
         self.assertEqual(UserAccount.active_user, self)
+
+    def test_find_account_by_username(self):
+        """Test case to check if account can be found by username."""
+        self.new_account.create_account()
+
+        newer_account = UserAccount("johndoe", "JohnDOE")
+        newer_account.create_account()
+
+        self.assertEqual(
+            UserAccount.find_account_by_username("trucktar"), self.new_account
+        )
+        self.assertEqual(UserAccount.find_account_by_username("johndoe"), newer_account)
 
 
 class TestCredential(unittest.TestCase):
