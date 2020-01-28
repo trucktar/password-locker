@@ -9,6 +9,7 @@ class TestUser(unittest.TestCase):
     def setUp(self):
         """Set up method to run before each test case."""
         self.new_account = UserAccount("trucktar", "TruckOnTAR")
+        self.new_account.create_account()
 
     def tearDown(self):
         """Clean up logic after each test case."""
