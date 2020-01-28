@@ -49,4 +49,16 @@ class UserAccount:
 class Credential:
     """Class that generates credential instances."""
 
+    def __init__(self, sitename, username, password):
+        """Assign credential attributes after instantiation.
+
+        Args:
+            sitename: Credential's linked site.
+            username: Credential's username.
+            password: Credential's password. 
+        """
+        self.sitename = sitename
+        self.username = username
+        self.password = password
+
     pass
