@@ -35,6 +35,13 @@ class TestUser(unittest.TestCase):
         newest_account.create_account()
 
         self.assertEqual(len(UserAccount.user_list), 3)
+    
+    def test_login_account(self):
+        """Test case to test if account login actually works."""
+        self.new_account.create_account()
+        UserAccount.login_account(self)
+
+        self.assertEqual(UserAccount.active_user, self)
 
 
 class TestCredential(unittest.TestCase):
