@@ -60,7 +60,7 @@ class TestCredential(unittest.TestCase):
 
     def setUp(self):
         """Set up method to run before each test case."""
-        self.new_credential = Credential("Twitter","trucktar", "TruckOnTAR")
+        self.new_credential = Credential("Twitter", "trucktar", "TruckOnTAR")
 
     def test_init(self):
         """Test case to test if account is instantiated properly."""
@@ -68,6 +68,10 @@ class TestCredential(unittest.TestCase):
         self.assertEqual(self.new_credential.username, "trucktar")
         self.assertEqual(self.new_credential.password, "TruckOnTAR")
 
+    def test_generate_password(self):
+        """Test case to check if random password is generated."""
+        newer_credential = Credential("Instagram", "johndoe")
+        self.assertTrue(newer_credential.password)
 
 if __name__ == "__main__":
     unittest.main()
